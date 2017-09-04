@@ -1,0 +1,15 @@
+applications:
+- path: .
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: info-nuagique
+  host: info-nuagique
+  disk_quota: 1024M
+  services:
+  - availability-monitoring-auto
+  - info-nuagique-iotf-service
+  - info-nuagique-cloudantNoSQLDB
+  env:
+    NODE_RED_USERNAME: henri
+    NODE_RED_PASSWORD: Z6Q7h8B2euzgNYd
