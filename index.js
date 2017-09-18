@@ -30,7 +30,7 @@ if (!settings.adminAuth) {
     if (settings.storageModule) {
         storage = settings.storageModule;
     } else {
-        storage = require('./node_modules/node-red/red/runtime/storage/localfilesystem');
+        storage = require('./node_modules/node-red-studio/red/runtime/storage/localfilesystem');
     }
     util.log("Loading application settings");
     storage.init(settings).then(storage.getSettings).then(function(runtimeSettings) {
@@ -131,5 +131,5 @@ function startNodeRED(config) {
             util.log("Disabled anonymous read-only access - set NODE_RED_GUEST_ACCESS to 'true' to enable");
         }
     }
-    require('./node_modules/node-red/red.js');
+    require('./node_modules/node-red-studio/red.js');
 }

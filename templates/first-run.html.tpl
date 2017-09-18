@@ -251,7 +251,7 @@
                 setTimeout(function() {
                     $.ajax({
                         dataType: "json",
-                        url: "/red/settings",
+                        url: "${ROOT}/settings".replace(/\/+/g,'/'),
                         success: function() {
                             redirectToEditor();
                         },

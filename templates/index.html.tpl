@@ -41,7 +41,7 @@
             </div>
             <div class="col-1-2">
                 <div class="content blurb">
-                    <p style="text-align: center"><a style="width:350px;" class="button" href="red/">Go to your Node-RED flow editor</a></p>
+                    <p style="text-align: center"><a style="width:350px;" class="button" href="${ROOT}">Go to your Node-RED flow editor</a></p>
                     <p style="text-align: center"><a href="#custom">Learn how to customise Node-RED</a></p>
                 </div>
             </div>
