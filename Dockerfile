@@ -31,8 +31,8 @@ RUN apk add --no-cache python2 \
     easy_install pip && \
     if [[ ! -e /usr/bin/pip ]]; then ln -sf /usr/bin/pip2.7 /usr/bin/pip; fi && \
     pip install --upgrade pip && \
-    npm install && \
-    npm rebuild bcrypt --build-from-source && \
+    CODE=-1 ; while [ $CODE != 0 ] ; do npm install ; CODE=$? ; done && \
+    CODE=-1 ; while [ $CODE != 0 ] ; do npm rebuild bcrypt --build-from-source ; CODE=$? ; done && \
     apk del alpine-sdk && \
     rm -rf /var/cache/apk/*
 
