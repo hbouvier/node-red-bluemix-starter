@@ -247,7 +247,13 @@ var settings = {
             const v = c === 'x' ? r : (r & 0x3 | 0x8);
             return v.toString(16);
           });
-        }
+        },
+        env: (process.env.NODE_RED_ENV_STARTSWITH || "").split(',')
+              .map(predicate => Object.keys(process.env)
+                .filter(key => key.startsWith(predicate))
+                .reduce((acc, key) => { acc[key] = process.env[key]; return acc; }, {})
+              )
+              .reduce((acc, obj) => Object.assign({}, acc, obj), {})
     },
 
     // Configure the logging output

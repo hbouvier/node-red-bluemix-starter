@@ -15,6 +15,7 @@ FROM node:8-alpine
 #      GITHUB_CLIENT_BASEURL=http://localhost:1880/ide/
 #      NODE_RED_STORAGE_NAME
 #      COUCHDB_SERVICE={"credentials":{"username":"admin","password":"admin","host":"192.168.99.100","port":5984,"url":"http://admin:admin@192.168.99.100:5984"}}
+#      NODE_RED_ENV_STARTSWITH="MQTT_,POSTGRESQL_"
 #      
 WORKDIR /app
 
