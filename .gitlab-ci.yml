@@ -1,0 +1,31 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+before_script:
+  - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+
+stages:
+- build
+
+variables:
+  CONTAINER_BRANCH_IMAGE: ${CI_REGISTRY_IMAGE}/${CI_PROJECT_NAME}:${CI_COMMIT_REF_NAME}
+  CONTAINER_LATEST_IMAGE: ${CI_REGISTRY_IMAGE}/${CI_PROJECT_NAME}:latest
+
+
+build-master:
+  stage: build
+  script: |
+    docker build --pull -t "${CONTAINER_LATEST_IMAGE}" .
+    docker push "${CONTAINER_LATEST_IMAGE}"
+  only:
+    - master
+
+build-branches:
+  stage: build
+  script: |
+    docker build --pull -t "${CONTAINER_BRANCH_IMAGE}" .
+    docker push "${CONTAINER_BRANCH_IMAGE}"
+  except:
+    - master
