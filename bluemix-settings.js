@@ -188,6 +188,7 @@ var settings = {
     //    origin: "*",
     //    methods: "GET,PUT,POST,DELETE"
     //},
+    httpNodeCors: JSON.parse(process.env.HTTP_NODE_CORS),
 
     // If you need to set an http proxy please set an environment variable
     // called http_proxy (or HTTP_PROXY) outside of Node-RED in the operating system.
