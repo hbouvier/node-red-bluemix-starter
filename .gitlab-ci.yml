@@ -10,8 +10,9 @@ stages:
 - build
 
 variables:
-  CONTAINER_BRANCH_IMAGE: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}
+  CONTAINER_BRANCH_IMAGE: ${CI_REGISTRY}/${CI_COMMIT_REF_NAME}/${CI_PROJECT_NAME}:${CI_COMMIT_SHA}
   CONTAINER_LATEST_IMAGE: ${CI_REGISTRY_IMAGE}:latest
+  CONTAINER_TAG_IMAGE: ${CI_REGISTRY_IMAGE}:${CI_COMMIT_REF_NAME}
 
 
 build-master:
@@ -28,4 +29,12 @@ build-branches:
     docker build --pull -t "${CONTAINER_BRANCH_IMAGE}" .
     docker push "${CONTAINER_BRANCH_IMAGE}"
   except:
-    - master
+    - tags
+
+build-tags:
+  stage: build
+  script: |
+    docker build --pull -t "${CONTAINER_TAG_IMAGE}" .
+    docker push "${CONTAINER_TAG_IMAGE}"
+  only:
+    - tags
