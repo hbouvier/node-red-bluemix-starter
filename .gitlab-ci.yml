@@ -14,7 +14,7 @@ stages:
 # CI_COMMIT_REF_NAME: master
 # CI_PROJECT_NAME: node-red-bluemix-starter
 # CI_COMMIT_SHA: 2f0efe9516165a1e3ecab8470cd4ababbabc99e8
-# CI_REGISTRY_IMAGE: registry.gitlab.com/pod-o-mad/node-red-bluemix-starter
+# CI_REGISTRY_IMAGE: registry.gitlab.com/pod-o-mat/node-red-bluemix-starter
 variables:
   CONTAINER_BRANCH_IMAGE: ${CI_REGISTRY_IMAGE/${CI_PROJECT_NAME}/}${CI_COMMIT_REF_NAME}/${CI_PROJECT_NAME}:${CI_COMMIT_SHA}
   CONTAINER_LATEST_IMAGE: ${CI_REGISTRY_IMAGE}:latest
@@ -32,8 +32,8 @@ build-master:
 build-branches:
   stage: build
   script: |
-    docker build --pull -t "${CONTAINER_BRANCH_IMAGE}" .
-    docker push "${CONTAINER_BRANCH_IMAGE}"
+    docker build --pull -t "${CI_REGISTRY_IMAGE/${CI_PROJECT_NAME}/}${CI_COMMIT_REF_NAME}/${CI_PROJECT_NAME}:${CI_COMMIT_SHA}" .
+    docker push "${CI_REGISTRY_IMAGE/${CI_PROJECT_NAME}/}${CI_COMMIT_REF_NAME}/${CI_PROJECT_NAME}:${CI_COMMIT_SHA}"
   except:
     - tags
 
